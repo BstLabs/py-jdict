@@ -1,7 +1,6 @@
 import datetime
 import json
 from copy import deepcopy
-
 from unittest import TestCase, main
 
 from jdict import jdict

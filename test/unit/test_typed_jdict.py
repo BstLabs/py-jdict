@@ -1,5 +1,4 @@
 from typing import Final, Optional
-
 from unittest import TestCase, main
 
 from jdict import jdict
