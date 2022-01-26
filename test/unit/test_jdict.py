@@ -1,8 +1,7 @@
 import datetime
 import json
 from copy import deepcopy
-
-from caios.test import TestCase, main
+from unittest import TestCase, main
 
 from jdict import jdict
 from jdict.transformer import transform

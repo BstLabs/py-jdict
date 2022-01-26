@@ -1,15 +1,17 @@
 import ast
-from ast import Dict, Module, Name
 from typing import Any, Final
+
+jdict = "jdict"  # WPS226 Found string literal over-use
 
 
 class JdictTransformer(ast.NodeTransformer):
     """
-    The visitor class of the node that traverses the abstract syntax tree and calls the visitor function
+    The visitor class of the node that traverses,
+    the abstract syntax tree and calls the visitor function
     for each node found. Inherits from class NodeTransformer
     """
 
-    def visit_Module(self, node: Module) -> Any:
+    def visit_Module(self, node: ast.AST) -> Any:
         """
         Method imports jdict module into ast
         :param node: CodeType
@@ -17,17 +19,17 @@ class JdictTransformer(ast.NodeTransformer):
         """
         node = self.generic_visit(node)
         import_node = ast.ImportFrom(
-            module="jdict", names=[ast.alias(name="jdict")], level=0
+            module=jdict, names=[ast.alias(name=jdict)], level=0
         )
         node.body.insert(0, import_node)
         return node
 
-    def visit_Name(self, node: Name) -> Any:
+    def visit_Name(self, node: ast.Name) -> Any:
         if node.id == "dict":
-            node.id = "jdict"
+            node.id = jdict
         return self.generic_visit(node)
 
-    def visit_Dict(self, node: Dict) -> Any:
+    def visit_Dict(self, node: ast.AST) -> Any:
         """
         Method goes into the dict node and modifies it to jdict
         :param node:
