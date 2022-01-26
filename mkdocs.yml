@@ -1,0 +1,26 @@
+site_name: JDict
+site_description: JDict, JavaScript like Python dicionaries.
+site_url: ""
+theme:
+  name: material
+  palette:
+    primary: "deep blue"
+    accent: "indigo"
+  features:
+    - content.code.annotate
+
+nav:
+  - JDict: "index.md"
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      toc_depth: "1-1"
