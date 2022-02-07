@@ -1,7 +1,7 @@
 from typing import Final, Optional
 from unittest import TestCase, main
-
 from jdict import jdict, use_jdict
+
 
 
 class Point2D(jdict):
