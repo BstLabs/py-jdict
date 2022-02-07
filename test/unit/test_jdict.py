@@ -4,6 +4,7 @@ from copy import deepcopy
 from unittest import TestCase, main
 
 from jdict import jdict, use_jdict
+
 from jdict.transformer import transform
 
 
