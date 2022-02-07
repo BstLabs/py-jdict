@@ -1,6 +1,10 @@
-import json
+import requests
+from jdict import jdict
 
-from box import Box
+# data = requests.get('https://api.anonfiles.com/v2/file/n2weifEcx5/info')
+# json_data = data.json()
+# print(type(json_data))
+
 
 json_data = {
     "status": True,
@@ -18,7 +22,9 @@ json_data = {
         }
     },
 }
-new_data = Box(json_data)
+
+new_data = jdict(json_data)
+
 
 for key, value in new_data.data.file.metadata.items():
     print(key, value)
