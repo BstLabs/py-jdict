@@ -1,7 +1,7 @@
 from typing import Final, Optional
 from unittest import TestCase, main
 
-from jdict import jdict
+from jdict import jdict, use_jdict
 
 
 class Point2D(jdict):
@@ -11,6 +11,10 @@ class Point2D(jdict):
 
 
 class TestTypedJdict(TestCase):
+    
+    def setUp(self):
+        use_jdict()
+    
     def _validate_point(self, p) -> None:
         self.assertEqual(10, p.x)
         if issubclass(int, type(p.y)):

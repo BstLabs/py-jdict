@@ -3,7 +3,7 @@ import json
 from copy import deepcopy
 from unittest import TestCase, main
 
-from jdict import jdict
+from jdict import jdict, use_jdict
 from jdict.transformer import transform
 
 
@@ -15,6 +15,7 @@ class TestJdict(TestCase):
             "eventType": "UNLOAD",
             "completionTime": 1526897537633,
         }
+        use_jdict()
         self.jdict = jdict(self.data)
 
     def test_jdict(self):
