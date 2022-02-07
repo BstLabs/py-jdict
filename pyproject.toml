@@ -13,9 +13,9 @@ requires-python = ">=3.9"
 
 
 [project.urls]
-Documentation = "https://bstlabs.github.io/py-jdict"
+Documentation = "https://github.com/bstlabs/py-jdict"
 Source = "https://github.com/bstlabs/py-jdict"
-Home = "https://bstlabs.github.io/py-jdict"
+Home = "https://github.com/bstlabs/py-jdict"
 
 [project.optional-dependencies]
 doc = ["mkdocs-material >=8.1.2"]
