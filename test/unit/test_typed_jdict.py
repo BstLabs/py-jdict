@@ -11,10 +11,9 @@ class Point2D(jdict):
 
 
 class TestTypedJdict(TestCase):
-    
     def setUp(self):
         use_jdict()
-    
+
     def _validate_point(self, p) -> None:
         self.assertEqual(10, p.x)
         if issubclass(int, type(p.y)):
