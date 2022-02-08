@@ -7,3 +7,4 @@ dynacli.egg-info
 __pycache__/
 *.py[cod]
 .dmypy.json
+.pytype

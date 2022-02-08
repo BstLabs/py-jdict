@@ -1,7 +1,7 @@
 from typing import Final, Optional
 from unittest import TestCase, main
 
-from jdict import jdict, use_jdict
+from jdict import jdict, set_codec
 
 
 class Point2D(jdict):
@@ -12,7 +12,7 @@ class Point2D(jdict):
 
 class TestTypedJdict(TestCase):
     def setUp(self):
-        use_jdict()
+        set_codec()
 
     def _validate_point(self, p) -> None:
         self.assertEqual(10, p.x)

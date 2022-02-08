@@ -187,20 +187,8 @@ def _json_serial(_, obj) -> Any:
     raise TypeError("Type %s not serializable" % type(obj))
 
 
-def use_jdict():
-    # PyCharm does not understand me
-    # noinspection PyTypeChecker
-    json._default_decoder = json.JSONDecoder(object_pairs_hook=jdict)
-    json.JSONEncoder.default = (
+def set_codec(decoder: json = json) -> None:
+    decoder._default_decoder = decoder.JSONDecoder(object_pairs_hook=jdict)
+    decoder.JSONEncoder.default = (
         _json_serial  # need more aggressive patching due to indent
     )
-
-    try:
-        import simplejson
-
-        simplejson._default_decoder = simplejson.JSONDecoder(object_pairs_hook=jdict)
-        simplejson.JSONEncoder.default = (
-            _json_serial  # need more aggressive patching due to indent
-        )
-    except ImportError:
-        pass

@@ -1,7 +1,7 @@
 import ast
 from typing import Any, Final
 
-jdict = "jdict"  # WPS226 Found string literal over-use
+jdict: str = "jdict"  # WPS226 Found string literal over-use
 
 
 class JdictTransformer(ast.NodeTransformer):
@@ -17,12 +17,12 @@ class JdictTransformer(ast.NodeTransformer):
         :param node: CodeType
         :return: node
         """
-        node = self.generic_visit(node)
+        visited_node = self.generic_visit(node)
         import_node = ast.ImportFrom(
             module=jdict, names=[ast.alias(name=jdict)], level=0
         )
-        node.body.insert(0, import_node)
-        return node
+        visited_node.body.insert(0, import_node)
+        return visited_node
 
     def visit_Name(self, node: ast.Name) -> Any:
         if node.id == "dict":
