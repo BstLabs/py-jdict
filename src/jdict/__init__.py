@@ -187,8 +187,8 @@ def _json_serial(_, obj) -> Any:
     raise TypeError("Type %s not serializable" % type(obj))
 
 
-def set_codec(decoder: json = json) -> None:
-    decoder._default_decoder = decoder.JSONDecoder(object_pairs_hook=jdict)
-    decoder.JSONEncoder.default = (
+def set_codec(codec: json) -> None:
+    codec._default_decoder = codec.JSONDecoder(object_pairs_hook=jdict)
+    codec.JSONEncoder.default = (
         _json_serial  # need more aggressive patching due to indent
     )

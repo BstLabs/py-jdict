@@ -1,5 +1,5 @@
 import requests
-
+import json
 import jdict
 
 
@@ -17,7 +17,7 @@ def _get_file_info() -> dict:
 
 
 def _convert_to_jdict() -> jdict.jdict:
-    jdict.set_codec()
+    jdict.set_codec(json)
     return jdict.jdict(_get_file_info())
 
 
