@@ -47,7 +47,7 @@ Now let's build small script to show the jdict. We are going to use anonymous fi
 ```py
 import requests
 import json
-import jdict
+from jdict import jdict, set_codec
 
 # Send post request and upload the test.txt file - you can create one
 def _upload_file() -> str:
@@ -62,10 +62,10 @@ def _get_file_info() -> dict:
     url = f"https://api.anonfiles.com/v2/file/{_upload_file()}/info"
     return requests.get(url).json()
 
-# Convert to jdict the dictionary
-def _convert_to_jdict() -> jdict.jdict:
-    jdict.set_codec(json)
-    return jdict.jdict(_get_file_info())
+# Change codec to use jdict
+def _convert_to_jdict() -> jdict:
+    set_codec(json)
+    return _get_file_info()
 ```
 
 The killer point here is to change the codec and then convert our dictionary to jdict.
