@@ -119,6 +119,31 @@ id h8p2SbGfx2
 ID:  MYID
 ```
 
+## Patching
+
+The next crucial feature is to ability to path core libraries with jdict.
+
+Just think about the boto3 library, with AWS you may encounter really deeply nested json structures, 
+with jdict you can access those nested values with `.[dot]` notation as well.
+
+By patching `botocore.parsers` you gain really powerful tooling to work with:
+
+```py
+import os
+import boto3
+import jdict
+
+jdict.patch_module('botocore.parsers')
+
+def test_library():
+    response = boto3.client('s3').list_buckets()
+    assert(response.Buckets == response['Buckets'])
+    return 'OK'
+```
+
+> Just keep in mind that you need to have valid AWS credentials to run this code
+
+
 ## License
 
 MIT License, Copyright (c) 2021-2022 BST LABS. See [LICENSE](LICENSE.md) file.
