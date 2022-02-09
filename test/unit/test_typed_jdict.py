@@ -1,3 +1,4 @@
+import json
 from typing import Final, Optional
 from unittest import TestCase, main
 
@@ -12,7 +13,7 @@ class Point2D(jdict):
 
 class TestTypedJdict(TestCase):
     def setUp(self):
-        set_codec()
+        set_codec(json)
 
     def _validate_point(self, p) -> None:
         self.assertEqual(10, p.x)

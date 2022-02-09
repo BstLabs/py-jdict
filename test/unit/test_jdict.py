@@ -15,7 +15,7 @@ class TestJdict(TestCase):
             "eventType": "UNLOAD",
             "completionTime": 1526897537633,
         }
-        set_codec()
+        set_codec(json)
         self.jdict = jdict(self.data)
 
     def test_jdict(self):
