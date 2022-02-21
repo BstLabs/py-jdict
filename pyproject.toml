@@ -13,9 +13,9 @@ requires-python = ">=3.9"
 
 
 [project.urls]
-Documentation = "https://bstlabs.github.io/py-jdict"
+Documentation = "https://github.com/bstlabs/py-jdict"
 Source = "https://github.com/bstlabs/py-jdict"
-Home = "https://bstlabs.github.io/py-jdict"
+Home = "https://github.com/bstlabs/py-jdict"
 
 [project.optional-dependencies]
 doc = ["mkdocs-material >=8.1.2"]
@@ -26,6 +26,7 @@ dev = [
     "autoflake >=1.4",
     "flake8 >=4.0.1",
     "pre-commit >=2.17.0",
+    "pytype >=2022.1.31"
     ]
 
 [tool.isort]

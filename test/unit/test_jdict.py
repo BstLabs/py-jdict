@@ -3,7 +3,7 @@ import json
 from copy import deepcopy
 from unittest import TestCase, main
 
-from jdict import jdict
+from jdict import jdict, set_codec
 from jdict.transformer import transform
 
 
@@ -15,6 +15,7 @@ class TestJdict(TestCase):
             "eventType": "UNLOAD",
             "completionTime": 1526897537633,
         }
+        set_codec(json)
         self.jdict = jdict(self.data)
 
     def test_jdict(self):

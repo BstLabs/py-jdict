@@ -12,7 +12,7 @@ from .transformer import transform
 
 NoneType = type(None)
 
-__version__ = "1.0"
+__version__ = "1.0.0"
 
 
 class _Field:
@@ -187,17 +187,8 @@ def _json_serial(_, obj) -> Any:
     raise TypeError("Type %s not serializable" % type(obj))
 
 
-# PyCharm does not understand me
-# noinspection PyTypeChecker
-json._default_decoder = json.JSONDecoder(object_pairs_hook=jdict)
-json.JSONEncoder.default = _json_serial  # need more aggressive patching due to indent
-
-try:
-    import simplejson
-
-    simplejson._default_decoder = simplejson.JSONDecoder(object_pairs_hook=jdict)
-    simplejson.JSONEncoder.default = (
+def set_codec(codec: json) -> None:
+    codec._default_decoder = codec.JSONDecoder(object_pairs_hook=jdict)
+    codec.JSONEncoder.default = (
         _json_serial  # need more aggressive patching due to indent
     )
-except ImportError:
-    pass

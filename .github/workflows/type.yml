@@ -1,17 +1,19 @@
-name: ci 
+name: Type
 on:
-  push:
+  pull_request:
     branches:
-      - master 
+      - master
       - main
       - develop
+
 jobs:
-  deploy-documentation:
+  type:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9.6
-      - run: pip install mkdocs-material 
-      - run: mkdocs gh-deploy --force
+          architecture: x64
+      - run: pip install pytype==2022.1.31
+      - run: pytype --config=pytype.cfg src/jdict/*.py
