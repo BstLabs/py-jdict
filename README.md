@@ -8,7 +8,7 @@ For background and design description look at this [Medium article](https://medi
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install `jdict` from the PyPi site:
 
 ```bash
-pip3 install jdict
+pip3 install pyjdict
 ```
 
 ## What is jdict?
@@ -47,7 +47,7 @@ Now let's build small script to show the jdict. We are going to use anonymous fi
 ```py
 import requests
 import json
-from jdict import jdict, set_codec
+from pyjdict import jdict, set_codec
 
 # Send post request and upload the test.txt file - you can create one
 def _upload_file() -> str:
@@ -131,9 +131,9 @@ By patching `botocore.parsers` you gain really powerful tooling to work with:
 ```py
 import os
 import boto3
-import jdict
+import pyjdict
 
-jdict.patch_module('botocore.parsers')
+pyjdict.patch_module('botocore.parsers')
 
 def test_library():
     response = boto3.client('s3').list_buckets()

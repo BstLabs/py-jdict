@@ -1,6 +1,6 @@
 import requests
 import json
-from jdict import jdict, set_codec
+from pyjdict import jdict, set_codec
 
 
 def _upload_file() -> str:
