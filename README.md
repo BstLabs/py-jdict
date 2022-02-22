@@ -13,7 +13,7 @@ pip3 install pyjdict
 
 ## What is jdict?
 
-Let's imagine we have some deeply nested json structure as following(okay this is not deeply nested, but it is okay):
+Let's imagine we have some deeply nested json structure as following(this is not really deep, but it's enough for the sake of example):
 
 ```json
     {
