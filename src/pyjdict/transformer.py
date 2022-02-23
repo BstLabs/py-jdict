@@ -11,7 +11,7 @@ class JdictTransformer(ast.NodeTransformer):
     for each node found. Inherits from class NodeTransformer
     """
 
-    def visit_module(self, node: ast.AST) -> Any:
+    def visit_Module(self, node: ast.AST) -> Any:
         """
         Method imports jdict module into ast
         :param node: CodeType
@@ -24,7 +24,7 @@ class JdictTransformer(ast.NodeTransformer):
         visited_node.body.insert(0, import_node)
         return visited_node
 
-    def visit_name(self, node: ast.Name) -> Any:
+    def visit_Name(self, node: ast.Name) -> Any:
         """
         Method checks if the id dict and modifies it to jdict
         :param node:
@@ -34,7 +34,7 @@ class JdictTransformer(ast.NodeTransformer):
             node.id = JDICT
         return self.generic_visit(node)
 
-    def visit_dict(self, node: ast.AST) -> Any:
+    def visit_Dict(self, node: ast.AST) -> Any:
         """
         Method goes into the dict node and modifies it to jdict
         :param node:
