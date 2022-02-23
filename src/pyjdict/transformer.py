@@ -1,7 +1,7 @@
 import ast
 from typing import Any, Final
 
-JDICT: Final = "jdict"  # WPS226 Found string literal over-use
+JDICT: Final[str] = "jdict"  # WPS226 Found string literal over-use
 
 
 class JdictTransformer(ast.NodeTransformer):
