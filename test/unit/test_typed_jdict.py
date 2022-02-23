@@ -2,7 +2,7 @@ import json
 from typing import Final, Optional
 from unittest import TestCase, main
 
-from pyjdict import jdict, set_codec
+from jdict import jdict, set_codec
 
 
 class Point2D(jdict):

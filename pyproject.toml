@@ -40,3 +40,6 @@ skip_glob = ["docs/*"]
 line-length = 88
 target-version = ['py39']
 include = '\.pyi?$'
+
+[tool.flit.module]
+name = "jdict"

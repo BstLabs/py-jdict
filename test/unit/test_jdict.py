@@ -3,8 +3,8 @@ import json
 from copy import deepcopy
 from unittest import TestCase, main
 
-from pyjdict import jdict, set_codec
-from pyjdict.transformer import transform
+from jdict import jdict, set_codec
+from jdict.transformer import transform
 
 
 class TestJdict(TestCase):
