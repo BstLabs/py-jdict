@@ -3,7 +3,6 @@ from typing import Any, Final
 
 JDICT: Final[str] = "jdict"  # WPS226 Found string literal over-use
 
-
 class JdictTransformer(ast.NodeTransformer):
     """
     The visitor class of the node that traverses,
@@ -25,6 +24,7 @@ class JdictTransformer(ast.NodeTransformer):
         return visited_node
 
     def visit_Name(self, node: ast.Name) -> Any:
+
         """
         Method checks if the id dict and modifies it to jdict
         :param node:
