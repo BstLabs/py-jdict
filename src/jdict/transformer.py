@@ -3,6 +3,7 @@ from typing import Any, Final
 
 JDICT: Final[str] = "jdict"  # WPS226 Found string literal over-use
 
+
 class JdictTransformer(ast.NodeTransformer):
     """
     The visitor class of the node that traverses,
