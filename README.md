@@ -11,6 +11,8 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install `jdict`
 pip3 install pyjdict
 ```
 
+> The package name is `pyjdict`, but the module name is `jdict`.
+
 ## What is jdict?
 
 Let's imagine we have some deeply nested json structure as following(this is not really deep, but it's enough for the sake of example):
@@ -47,7 +49,7 @@ Now let's build small script to show the jdict. We are going to use anonymous fi
 ```py
 import requests
 import json
-from pyjdict import jdict, set_codec
+from jdict import jdict, set_codec
 
 # Send post request and upload the test.txt file - you can create one
 def _upload_file() -> str:
@@ -70,7 +72,7 @@ def _convert_to_jdict() -> jdict:
 
 The killer point here is to change the codec and then convert our dictionary to jdict.
 
-If you are using [simplejson](https://pypi.org/project/simplejson/), just pass it as `pyjdict.set_codec(simplejson)`, it will do the same trick.
+If you are using [simplejson](https://pypi.org/project/simplejson/), just pass it as `jdict.set_codec(simplejson)`, it will do the same trick.
 
 Great, now we are ready to use it:
 
@@ -131,9 +133,9 @@ By patching `botocore.parsers` you gain really powerful tooling to work with:
 ```py
 import os
 import boto3
-import pyjdict
+import jdict
 
-pyjdict.patch_module('botocore.parsers')
+jdict.patch_module('botocore.parsers')
 
 def test_library():
     response = boto3.client('s3').list_buckets()
