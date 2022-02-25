@@ -2,7 +2,7 @@ import json
 from typing import Final, Optional
 from unittest import TestCase, main
 
-from jdict import jdict, set_codec
+from jdict import jdict, set_json_decoder
 
 
 class Point2D(jdict):
@@ -14,7 +14,7 @@ class Point2D(jdict):
 class TestTypedJdict(TestCase):
     @classmethod
     def setUpClass(cls):
-        set_codec(json)
+        set_json_decoder(json)
         cls.point = Point2D(x=10, y=25, label="first point")
 
     def _validate_point(self, p) -> None:

@@ -3,7 +3,7 @@ import json
 from copy import deepcopy
 from unittest import TestCase, main
 
-from jdict import jdict, set_codec
+from jdict import jdict, set_json_decoder
 from jdict.transformer import transform
 
 
@@ -15,7 +15,7 @@ class TestJdict(TestCase):
             "eventType": "UNLOAD",
             "completionTime": 1526897537633,
         }
-        set_codec(json)
+        set_json_decoder(json)
         self.jdict = jdict(self.data)
 
     def test_jdict(self):
@@ -38,9 +38,12 @@ class TestJdict(TestCase):
         self.assertEqual(type(d), jdict)
 
     def test_datetime_serializer(self):
-        print(
-            json.dumps(jdict(timestamp=datetime.datetime(2020, 10, 26)), indent=2)
-        )  # should not fail
+        self.assertRaises(
+            TypeError,
+            json.dumps,
+            jdict(timestamp=datetime.datetime(2020, 10, 26)),
+            indent=2,
+        )
 
 
 if __name__ == "__main__":

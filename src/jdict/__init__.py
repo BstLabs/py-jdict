@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import sys
 from copy import deepcopy
-from datetime import date, datetime
 from typing import Any, Final, Tuple, Union, get_args, get_origin, get_type_hints
 
 from .transformer import transform
@@ -161,16 +160,5 @@ def patch_module(module: str) -> None:
     exec(code, vars(parsers))
 
 
-def _json_serial(_, obj) -> Any:
-    """JSON serializer for objects not serializable by default json code"""
-
-    if isinstance(obj, (datetime, date)):
-        return obj.isoformat()
-    raise TypeError("Type %s not serializable" % type(obj))
-
-
-def set_codec(codec: json) -> None:
+def set_json_decoder(codec: json) -> None:
     codec._default_decoder = codec.JSONDecoder(object_pairs_hook=jdict)
-    codec.JSONEncoder.default = (
-        _json_serial  # need more aggressive patching due to indent
-    )
