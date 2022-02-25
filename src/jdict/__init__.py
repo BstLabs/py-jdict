@@ -102,23 +102,6 @@ def _configure_init(cls, fields: Tuple[_Field, ...]) -> callable:
     return ns[name]
 
 
-def _configure_setattr(fields: Tuple[_Field, ...]) -> callable:
-    """
-    Configure __setattr__ method for the subclass
-
-    :param fields: list of field descriptors
-    :return: function performing correct setting for mutable attributes only
-    """
-    mutable_attributes = {f.name for f in fields if not f.is_final}
-
-    def _protected_setattr(self, key: str, value: Any) -> None:
-        if key not in mutable_attributes:
-            raise AttributeError(f"{key} is final or does not exist")
-        self.__setitem__(key, value)
-
-    return _protected_setattr
-
-
 # noinspection PyPep8Naming
 class jdict(dict):
     """
@@ -140,7 +123,6 @@ class jdict(dict):
             raise ValueError("Empty field list")
         fields = tuple(_Field.get_field(n, t) for n, t in hints.items())
         setattr(cls, "__init__", _configure_init(cls, fields))
-        setattr(cls, "__setattr__", _configure_setattr(fields))
 
     def __getattr__(self, name: str) -> Any:
         """
