@@ -74,7 +74,7 @@ def _convert_to_jdict() -> jdict:
 
 The killer point here is to change the codec and then convert our dictionary to jdict.
 
-If you are using [simplejson](https://pypi.org/project/simplejson/), just pass it as `pyjdict.set_codec(simplejson)`, it will do the same trick.
+If you are using [simplejson](https://pypi.org/project/simplejson/), just pass it as `pyjdict.set_json_decoder(simplejson)`, it will do the same trick.
 
 Great, now we are ready to use it:
 
