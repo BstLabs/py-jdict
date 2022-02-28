@@ -2,7 +2,7 @@ import json
 from typing import Final, Optional
 from unittest import TestCase, main
 
-from jdict import jdict, set_codec
+from jdict import jdict, set_json_decoder
 
 
 class Point2D(jdict):
@@ -12,8 +12,10 @@ class Point2D(jdict):
 
 
 class TestTypedJdict(TestCase):
-    def setUp(self):
-        set_codec(json)
+    @classmethod
+    def setUpClass(cls):
+        set_json_decoder(json)
+        cls.point = Point2D(x=10, y=25, label="first point")
 
     def _validate_point(self, p) -> None:
         self.assertEqual(10, p.x)
@@ -25,7 +27,7 @@ class TestTypedJdict(TestCase):
             self.assertEqual("first point", p.label)
 
     def test_normal_initialization(self):
-        self._validate_point(Point2D(x=10, y=25, label="first point"))
+        self._validate_point(self.point)
 
     def test_no_optional_initialization(self):
         self._validate_point(Point2D(x=10, y=25))
@@ -40,9 +42,8 @@ class TestTypedJdict(TestCase):
         )  # PyCharm will not complain, but it fails in run-time
 
     def test_update_existing(self):
-        p = Point2D(x=10, y=25, label="first point")
-        p.y = 45
-        self.assertEqual(45, p.y)
+        self.point.y = 45
+        self.assertEqual(45, self.point.y)
 
     def test_update_optional(self):
         p = Point2D(x=10, y=25)
@@ -50,14 +51,12 @@ class TestTypedJdict(TestCase):
         self.assertEqual("missing label", p.label)
 
     def test_update_final(self):
-        p = Point2D(x=10, y=25, label="first point")
-        with self.assertRaises(AttributeError) as ae:
-            p.x = 45  # PyCharm complains and it fill fail
+        self.point.x = 45  # static type checkers and linters will complain about Final
+        self.assertEqual(45, self.point.x)
 
     def test_set_non_existent(self):
-        p = Point2D(x=10, y=25, label="first point")
-        with self.assertRaises(AttributeError) as ae:
-            p.z = 45  # PyCharm does not complain but it fill fail
+        self.point.z = 45
+        self.assertEqual(45, self.point.z)
 
 
 if __name__ == "__main__":

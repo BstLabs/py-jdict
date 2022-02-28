@@ -1,6 +1,8 @@
 import requests
 import json
-from jdict import jdict, set_codec
+
+from jdict import jdict, set_json_decoder
+
 
 
 def _upload_file() -> str:
@@ -17,7 +19,7 @@ def _get_file_info() -> dict:
 
 
 def _convert_to_jdict() -> jdict:
-    set_codec(json)
+    set_json_decoder(json)
     return _get_file_info()
 
 
