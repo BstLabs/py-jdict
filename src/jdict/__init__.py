@@ -11,7 +11,7 @@ from .transformer import transform
 
 NoneType = type(None)
 
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 
 
 class _Field:
