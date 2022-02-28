@@ -1,6 +1,8 @@
 import requests
 import json
+
 from jdict import jdict, set_json_decoder
+
 
 
 def _upload_file() -> str:

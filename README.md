@@ -49,7 +49,9 @@ Now let's build small script to show the jdict. We are going to use anonymous fi
 ```py
 import requests
 import json
+
 from jdict import jdict, set_json_decoder
+
 
 # Send post request and upload the test.txt file - you can create one
 def _upload_file() -> str:
